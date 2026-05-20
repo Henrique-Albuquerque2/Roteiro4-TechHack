@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<title>PrivacyLens - Relatorio</title>
+<link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-left">
+    <h1>PrivacyLens</h1>
+    <div class="origin" id="origin"></div>
+  </div>
+  <div class="topbar-right">
+    <div class="score-pill" id="score-pill">
+      <div class="grade-badge" id="grade-badge">?</div>
+      <div>
+        <div class="score-value"><span id="score">--</span><span class="score-suffix">/100</span></div>
+        <div class="score-label">Privacy Score</div>
+      </div>
+    </div>
+    <select id="tab-select" title="Aba monitorada"></select>
+    <button id="refresh">Atualizar</button>
+  </div>
+</header>
+
+<section class="summary">
+  <div class="summary-card">
+    <div class="summary-value" id="s-domains">0</div>
+    <div class="summary-label">Dominios de terceira parte</div>
+  </div>
+  <div class="summary-card">
+    <div class="summary-value" id="s-cookies">0</div>
+    <div class="summary-label">Cookies (1st+3rd)</div>
+  </div>
+  <div class="summary-card">
+    <div class="summary-value" id="s-storage">0</div>
+    <div class="summary-label">Entradas de storage</div>
+  </div>
+  <div class="summary-card">
+    <div class="summary-value" id="s-fp">0</div>
+    <div class="summary-label">Eventos fingerprint</div>
+  </div>
+  <div class="summary-card">
+    <div class="summary-value" id="s-sync">0</div>
+    <div class="summary-label">Cookie sync edges</div>
+  </div>
+  <div class="summary-card">
+    <div class="summary-value" id="s-hijack">0</div>
+    <div class="summary-label">Alertas hijacking</div>
+  </div>
+</section>
+
+<nav class="tabs">
+  <button class="tab active" data-tab="domains">Dominios</button>
+  <button class="tab" data-tab="cookies">Cookies</button>
+  <button class="tab" data-tab="storage">Storage</button>
+  <button class="tab" data-tab="fp">Fingerprinting</button>
+  <button class="tab" data-tab="sync">Cookie sync</button>
+  <button class="tab" data-tab="hijack">Hijacking</button>
+  <button class="tab" data-tab="score">Pontuacao</button>
+</nav>
+
+<section class="tab-panels">
+  <div class="panel active" id="panel-domains">
+    <table>
+      <thead><tr><th>Dominio</th><th>Tipos</th><th>Total</th><th>Visto</th></tr></thead>
+      <tbody id="tbl-domains"></tbody>
+    </table>
+  </div>
+  <div class="panel" id="panel-cookies">
+    <table>
+      <thead><tr><th>Nome</th><th>Dominio</th><th>Parte</th><th>Duracao</th><th>Flags</th><th>Valor</th></tr></thead>
+      <tbody id="tbl-cookies"></tbody>
+    </table>
+    <h3>Supercookies detectados</h3>
+    <table>
+      <thead><tr><th>Tipo</th><th>Host</th><th>Detalhe</th></tr></thead>
+      <tbody id="tbl-supercookies"></tbody>
+    </table>
+  </div>
+  <div class="panel" id="panel-storage">
+    <table>
+      <thead><tr><th>Origem</th><th>Area</th><th>Chave</th><th>Tamanho</th><th>Preview</th></tr></thead>
+      <tbody id="tbl-storage"></tbody>
+    </table>
+  </div>
+  <div class="panel" id="panel-fp">
+    <table>
+      <thead><tr><th>Superficie</th><th>API</th><th>Script chamador</th><th>Origem</th></tr></thead>
+      <tbody id="tbl-fp"></tbody>
+    </table>
+  </div>
+  <div class="panel" id="panel-sync">
+    <table>
+      <thead><tr><th>De</th><th>Para</th><th>Ocorrencias</th><th>Fragmentos</th></tr></thead>
+      <tbody id="tbl-sync"></tbody>
+    </table>
+  </div>
+  <div class="panel" id="panel-hijack">
+    <table>
+      <thead><tr><th>Tipo</th><th>Severidade</th><th>Descricao</th><th>URL</th></tr></thead>
+      <tbody id="tbl-hijack"></tbody>
+    </table>
+  </div>
+  <div class="panel" id="panel-score">
+    <table>
+      <thead><tr><th>Sinal</th><th>Contagem</th><th>Penalidade</th></tr></thead>
+      <tbody id="tbl-score"></tbody>
+    </table>
+    <h3>Metodologia</h3>
+    <p>A pontuacao inicia em 100 e cada sinal de risco subtrai pontos ate um limite (cap) por categoria. A nota final segue a escala A (>=85), B (>=70), C (>=50), D (>=30), F. A metodologia completa esta documentada no README do projeto.</p>
+  </div>
+</section>
+
+<script src="../lib/etld.js"></script>
+<script src="../lib/privacy-score.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<title>PrivacyLens</title>
+<link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">PrivacyLens</div>
+    <div id="origin" class="origin"></div>
+  </header>
+
+  <section class="score-card">
+    <div id="grade" class="grade">?</div>
+    <div class="score-detail">
+      <div class="score-value"><span id="score">--</span><span class="score-suffix">/100</span></div>
+      <div class="score-label">Privacy Score</div>
+    </div>
+  </section>
+
+  <section class="counters">
+    <div class="counter">
+      <div class="counter-value" id="c-domains">0</div>
+      <div class="counter-label">3rd party</div>
+    </div>
+    <div class="counter">
+      <div class="counter-value" id="c-cookies">0</div>
+      <div class="counter-label">cookies</div>
+    </div>
+    <div class="counter">
+      <div class="counter-value" id="c-storage">0</div>
+      <div class="counter-label">storage</div>
+    </div>
+    <div class="counter">
+      <div class="counter-value" id="c-fp">0</div>
+      <div class="counter-label">fingerprint</div>
+    </div>
+    <div class="counter">
+      <div class="counter-value" id="c-sync">0</div>
+      <div class="counter-label">cookie sync</div>
+    </div>
+    <div class="counter">
+      <div class="counter-value" id="c-hijack">0</div>
+      <div class="counter-label">hijacking</div>
+    </div>
+  </section>
+
+  <section class="breakdown">
+    <h3>Penalidades</h3>
+    <ul id="breakdown"></ul>
+  </section>
+
+  <footer>
+    <button id="open-dashboard">Abrir relatorio completo</button>
+    <button id="reset-tab" class="secondary">Reiniciar aba</button>
+  </footer>
+
+<script src="popup.js"></script>
+</body>
+</html>

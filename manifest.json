@@ -1,0 +1,68 @@
+{
+  "manifest_version": 2,
+  "name": "PrivacyLens",
+  "version": "1.0.0",
+  "description": "Detecta vetores de rastreamento e violacao de privacidade (3rd-party, cookies, storage, fingerprinting, hijacking, cookie syncing) na navegacao Firefox.",
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "privacylens@techhacker.insper",
+      "strict_min_version": "115.0"
+    }
+  },
+
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "webNavigation",
+    "cookies",
+    "tabs",
+    "storage",
+    "<all_urls>"
+  ],
+
+  "background": {
+    "persistent": false,
+    "scripts": [
+      "lib/etld.js",
+      "lib/privacy-score.js",
+      "background/tab-store.js",
+      "background/network-monitor.js",
+      "background/cookie-monitor.js",
+      "background/cookie-sync.js",
+      "background/hijacking-monitor.js",
+      "background/background.js"
+    ]
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "match_about_blank": false,
+      "run_at": "document_start",
+      "all_frames": false,
+      "js": ["content/page-bridge.js"]
+    },
+    {
+      "matches": ["<all_urls>"],
+      "run_at": "document_idle",
+      "all_frames": false,
+      "js": ["content/storage-probe.js"]
+    }
+  ],
+
+  "web_accessible_resources": [
+    "injected/fingerprint-hooks.js"
+  ],
+
+  "browser_action": {
+    "default_title": "PrivacyLens",
+    "default_popup": "popup/popup.html",
+    "default_icon": "icons/icon.svg"
+  },
+
+  "icons": {
+    "48": "icons/icon.svg",
+    "96": "icons/icon.svg"
+  }
+}
